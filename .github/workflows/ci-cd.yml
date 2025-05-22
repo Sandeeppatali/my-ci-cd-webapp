@@ -1,4 +1,4 @@
-name: CI/CD Pipeline with 
+name: CI/CD Pipeline with Auto Commit & Push
 
 on:
   push:
