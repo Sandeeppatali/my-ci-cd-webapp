@@ -25,6 +25,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      # Optional: Build step (if you have a build script)
+      # Optional: Build step (uncomment if needed)
       # - name: Build app
       #   run: npm run build

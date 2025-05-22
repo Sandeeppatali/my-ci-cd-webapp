@@ -1,13 +1,21 @@
 function addTask() {
-    const taskInput = document.getElementById("taskInput");
-    const taskList = document.getElementById("taskList");
+    const taskInput = document.getElementById('taskInput');
+    const taskText = taskInput.value.trim();
   
-    if (taskInput.value.trim() === "") return;
+    if (taskText === '') return;
   
-    const li = document.createElement("li");
-    li.textContent = taskInput.value;
-    taskList.appendChild(li);
+    const li = document.createElement('li');
+    li.textContent = taskText;
   
-    taskInput.value = "";
+    // Create Remove Button
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.className = 'remove-btn';
+    removeBtn.onclick = () => li.remove();
+  
+    li.appendChild(removeBtn);
+    document.getElementById('taskList').appendChild(li);
+  
+    taskInput.value = '';
   }
   
