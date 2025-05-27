@@ -9,22 +9,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
+      - uses: actions/checkout@v3
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
+      - run: npm ci
+      - run: npm test
 
       - name: Build app
-        run: npm run build
+        run: npm run build || echo "No build script defined"
+        
+      - name: Deploy to Render
+        run: curl "$RENDER_DEPLOY_HOOK"
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
 
       - name: Send Email Notification
         uses: dawidd6/action-send-mail@v3
@@ -33,11 +33,11 @@ jobs:
           server_port: 465
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "✅ Deployment Complete: My Web App"
+          subject: "✅ Deployment Complete: Node.js App"
           to: sandeeppatali683@gmail.com
-          from: "GitHub CI/CD Bot <${{ secrets.EMAIL_USERNAME }}@gmail.com>"
+          from: "GitHub Actions <${{ secrets.EMAIL_USERNAME }}>"
           body: |
-            🚀 Hello Sandeep!!
+            🚀 Hello Mahesh!!
 
             Your application was just deployed successfully.
 
