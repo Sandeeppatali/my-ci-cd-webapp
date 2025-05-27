@@ -31,11 +31,11 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: sandeeppatali
-          password: sandeeppatali2003
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "✅ Deployment Complete: My Web App"
           to: sandeeppatali683@gmail.com
-          from: "GitHub CI/CD Bot <sandeeppatali>"
+          from: "GitHub CI/CD Bot <${{ secrets.EMAIL_USERNAME }}@gmail.com>"
           body: |
             🚀 Hello Sandeep!!
 
